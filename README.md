@@ -10,7 +10,7 @@ git clone https://github.com/HasslerYahir/test-micros-llc.git
 cd test-micros-llc
 ```
 
-2.Compilar los microservicios:
+2. Compilar los microservicios:
 ```bash
 ./gradlew clean build -x test
 ```
@@ -32,7 +32,7 @@ Esto levanta:
 -Clients Service → http://localhost:8080/swagger-ui.html
 -Accounts Service → http://localhost:8081/swagger-ui.html
 
-5.Base de datos , No necesitas scripts .sql. Se usa Flyway, 
+5. Base de datos , No necesitas scripts .sql. Se usa Flyway, 
 que versiona las bases de datos y aplica automáticamente las migraciones al iniciar los microservicios.
 
 6. Endpoints
