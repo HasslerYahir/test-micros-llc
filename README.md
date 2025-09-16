@@ -8,17 +8,18 @@ Este proyecto es una prueba de microservicios que incluye **Clients Service** y 
 ```bash
 git clone https://github.com/HasslerYahir/test-micros-llc.git
 cd test-micros-llc
-```bash
+```
 
 2.Compilar los microservicios:
 ```bash
 ./gradlew clean build -x test
-```bash
+```
 
 3. En la ruta de descarga del repo Levantar todo con Docker:
 ```bash
 docker compose up -d --build
-```bash
+```
+
 Esto levanta: 
 
 -Postgres backend_users (para clientes)
