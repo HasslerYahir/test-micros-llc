@@ -19,13 +19,11 @@ cd test-micros-llc
 ```bash
 docker compose up -d --build
 ```
-
 Esto levanta: 
-
--Postgres backend_users (para clientes)
--Postgres backend_accounts (para cuentas)
--Clients Service en el puerto 8080
--Accounts Service en el puerto 8081
+- Postgres backend_users (para clientes)
+- Postgres backend_accounts (para cuentas)
+- Clients Service en el puerto 8080
+- Accounts Service en el puerto 8081
 
 4. Swagger Una vez arriba, entra al navegador y prueba las APIs directamente en Swagger:
 
