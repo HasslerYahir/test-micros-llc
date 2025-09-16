@@ -1,0 +1,60 @@
+version: "3.9"
+
+services:
+  clients-db:
+    image: postgres:15
+    container_name: backend_users-postgres
+    environment:
+      POSTGRES_DB: backend_users
+      POSTGRES_USER: backend_bp_user
+      POSTGRES_PASSWORD: backend_bp_pass
+    ports:
+      - "5432:5432"
+    networks:
+      - banking-net
+
+  accounts-db:
+    image: postgres:15
+    container_name: backend_accounts-postgres
+    environment:
+      POSTGRES_DB: backend_accounts
+      POSTGRES_USER: backend_bp_user
+      POSTGRES_PASSWORD: backend_bp_pass
+    ports:
+      - "5434:5432"
+    networks:
+      - banking-net
+
+  clients-service:
+    build: ./clients-services
+    container_name: clients-service
+    depends_on:
+      - clients-db
+    environment:
+      URL_BD: jdbc:postgresql://clients-db:5432/backend_users
+      USER_NAME_BD: backend_bp_user
+      PWD_BD: backend_bp_pass
+    ports:
+      - "8080:8080"
+    networks:
+      - banking-net
+
+  accounts-service:
+    build: ./accounts-services
+    container_name: accounts-service
+    depends_on:
+      - accounts-db
+      - clients-service
+    environment:
+      URL_BD: jdbc:postgresql://accounts-db:5432/backend_accounts
+      USER_NAME_BD: backend_bp_user
+      PWD_BD: backend_bp_pass
+      CLIENT_SERVICE: http://clients-service:8080
+    ports:
+      - "8081:8081"
+    networks:
+      - banking-net
+
+networks:
+  banking-net:
+    driver: bridge
